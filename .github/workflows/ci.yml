@@ -16,6 +16,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: List files in the current directory
+        run: ls -R  # List all files and directories for debugging
+      
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
@@ -24,7 +27,7 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package
-        working-directory: ./my-app  # Change this based on your repo structure if needed
+        working-directory: ./my-app  # Make sure this path is correct based on your repo structure
 
       - name: Archive WAR file
         run: |

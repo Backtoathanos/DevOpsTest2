@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - main  # or your desired branch
   pull_request:
     branches:
       - main
@@ -19,7 +19,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '17'
+          java-version: '17'  # or your required Java version
+          distribution: 'temurin'  # or 'zulu', depending on your preference
 
       - name: Build with Maven
         run: mvn clean package  # Use 'package' to create WAR file

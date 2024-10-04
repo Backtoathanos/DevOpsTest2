@@ -24,18 +24,14 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package
-        working-directory: ./  # Ensure this is set to the root where pom.xml is located
+        working-directory: /opt/tomcat/conf/my-app  # Set the working directory to the location of your pom.xml
 
       - name: Archive WAR file
         run: |
-          mv target/*.war ./myapp.war  # Adjust if necessary based on actual WAR file name
+          mv target/*.war ./myapp.war  # Adjust the path based on your project structure
         shell: bash
 
       - name: Trigger Jenkins Pipeline
         run: |
           curl -X POST http://3.110.184.47:8080/job/GitTomcat/ \
           --user nausher:token1234
-      - name: Print working directory and list files
-        run: |
-          pwd
-          ls -R

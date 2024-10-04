@@ -23,11 +23,12 @@ jobs:
           distribution: 'temurin'  # or 'zulu', depending on your preference
 
       - name: Build with Maven
-        run: mvn clean package  # Use 'package' to create WAR file
+        run: mvn clean package
+        working-directory: ./opt/apache-tomcat-9.0.95/conf/my-app  # Adjust this path to where your pom.xml is located
 
       - name: Archive WAR file
         run: |
-          mv target/*.war ./myapp.war  # Adjust the path based on your project structure
+          mv ./opt/apache-tomcat-9.0.95/conf/my-app/target/*.war ./myapp.war  # Adjust the path based on your project structure
 
       - name: Deploy to Tomcat
         run: |

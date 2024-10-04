@@ -28,9 +28,7 @@ jobs:
       - name: Archive WAR file
         run: |
           mv target/*.war ./myapp.war  # Adjust the path based on your project structure
-        shell: bash
 
-      - name: Trigger Jenkins Pipeline
+      - name: Deploy to Tomcat
         run: |
-          curl -X POST http://3.110.184.47:8080/job/GitTomcat/ \
-          --user nausher:token1234
+          curl -u nausher:12345 --upload-file ./myapp.war http://3.110.184.47:9090/manager/text/deploy?path=/my-app&update=true

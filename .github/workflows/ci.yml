@@ -23,15 +23,19 @@ jobs:
           distribution: 'temurin'  # or 'zulu', depending on your preference
 
       - name: Build with Maven
-        run: mvn clean package  # This should work since pom.xml is in the root
-        working-directory: ./  # Set the working directory to the root
+        run: mvn clean package
+        working-directory: ./  # Ensure this is set to the root where pom.xml is located
 
       - name: Archive WAR file
         run: |
-          mv target/*.war ./myapp.war  # This assumes the WAR file will be created in the target directory
+          mv target/*.war ./myapp.war  # Adjust if necessary based on actual WAR file name
         shell: bash
 
       - name: Trigger Jenkins Pipeline
         run: |
           curl -X POST http://3.110.184.47:8080/job/GitTomcat/ \
           --user nausher:token1234
+      - name: Print working directory and list files
+        run: |
+          pwd
+          ls -R

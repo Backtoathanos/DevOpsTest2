@@ -24,11 +24,11 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package
-        working-directory: ./opt/apache-tomcat-9.0.95/conf/my-app  # Adjust this path to where your pom.xml is located
+        working-directory: ./my-app  # Change this based on your repo structure if needed
 
       - name: Archive WAR file
         run: |
-          mv ./opt/apache-tomcat-9.0.95/conf/my-app/target/*.war ./myapp.war  # Adjust the path based on your project structure
+          mv ./my-app/target/*.war ./myapp.war  # Adjust based on the output path of the WAR file
 
       - name: Deploy to Tomcat
         run: |

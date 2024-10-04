@@ -31,4 +31,4 @@ jobs:
 
       - name: Deploy to Tomcat
         run: |
-          curl -u nausher:12345 --upload-file ./myapp.war http://3.110.184.47:9090/manager/text/deploy?path=/my-app&update=true
+          curl -u nausher:123456 --upload-file ./myapp.war http://3.110.184.47:9090/manager/text/deploy?path=/my-app&update=true

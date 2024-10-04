@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main  # or your desired branch
+      - main
   pull_request:
     branches:
       - main
@@ -19,7 +19,17 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '17'  # or your required Java version
+          java-version: '17'
 
       - name: Build with Maven
-        run: mvn clean install  # Adjust this to your build command
+        run: mvn clean package  # Use 'package' to create WAR file
+
+      - name: Archive WAR file
+        run: |
+          mv target/*.war ./myapp.war  # Adjust the path based on your project structure
+        shell: bash
+
+      - name: Trigger Jenkins Pipeline
+        run: |
+          curl -X POST http://3.110.184.47:8080/job/GitTomcat/ \
+          --user nausher:token1234
